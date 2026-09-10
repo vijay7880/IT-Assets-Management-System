@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrap</title>
+    <link rel="stylesheet" href="/style.css">
+      <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
+            <label class="sidebar-toggle-button" for="sidebar-toggle" aria-label="Collapse sidebar"></label>
+            <div class="brand">
+                <img src="Radico logo.jpg" class="logo" alt="">
+                <div>
+                    <h1>IT Asset</h1>
+                    <span>Management System</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a  href="/"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="assets"><i class="fa-solid fa-box"></i> Assets</a>
+                <a href="assigned"><i class="fa-solid fa-user"></i> Assigned</a>
+                <a href="maintenance"><i class="fa-solid fa-wrench"></i> Maintenance </a>
+                <a class="active"href="scrap"><i class="fa-solid fa-trash"></i> Scrap Asset</a>
+            </nav>
+            <a class="topbar-badge sidebar-logout" href="/logout">Logout</a>
+        </aside>
+   
+        <main class="content">
+
+
+            <section class="page-header-card">
+                <div class="page-header-top">
+                    <div>
+                        <div class="breadcrumb">Home &gt; Scrap</div>
+                        <h3 class="page-title">Scrap</h3>
+                    </div>
+
+                    <div class="toolbar">
+                        <form action="/search-sc" method="get">
+                        <div class="search-row">
+                            <div class="search-wrap">
+                                <span class="search-icon">🔎</span>
+                                <input type="text" name="name" placeholder="Search Scrap...">
+                            </div>
+                            <button type="submit" class="btn btn-search">Search</button>
+                        </div>
+                        </form>
+                        <br>
+
+                        <div class="header-actions">
+                            <a href="/Add_scrap" class="btn btn-primary">Add Scrap</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="asset-table-container">
+
+             <table class="assets-table">
+                <thead>
+                <tr>
+                    
+                    <th> RD Tag.No </th>
+                    <th>Asset Name</th>
+                    <th>Category</th>
+                    <th>Department</th>
+                    <th> Model </th>
+                    <th> Serial_No </th>
+                    <th>Scrap_Date</th>
+                    <th>Problem</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                
+                   <% result.forEach((result)=>{ %>
+                    <tr>
+                  
+                    <td>
+                        <a href="/view_scrap/<%=result.RDTag_No%>"><%=result.RDTag_No%></a>
+                    </td>
+                     <td>
+                        <%=result.Asset_Name %>
+                    </td>
+                    <td>
+                        <%=result.Category%>
+                    </td>
+                    <td>
+                        <%=result.Department%>
+                    </td>
+                    <td>
+                        <%=result.Model %>
+                    </td>
+                    <td>
+                        <%=result.Serial_No %>
+                    </td>
+                    
+                     <td>
+                        <%=new Date(result.Scrap_Date).toLocaleDateString('en-CA') %>
+                    </td>
+                    <td><%=result.Problem%></td>
+                   
+                    </tr>
+                  <% }); %>
+                
+                </tbody>
+            </table>
+            </div>
+       
+        </main>
+    </div>
+</body>
+<script>
+    const sidebarToggle = document.getElementById("sidebar-toggle");
+
+    const isSidebarCollapsed =
+        localStorage.getItem("sidebarCollapsed") === "true";
+
+    sidebarToggle.checked = isSidebarCollapsed;
+
+    sidebarToggle.addEventListener("change", function () {
+        localStorage.setItem(
+            "sidebarCollapsed",
+            String(sidebarToggle.checked)
+        );
+    });
+</script>
+
+</body>
+
+</html>

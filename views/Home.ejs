@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Assets System</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
+            <label class="sidebar-toggle-button" for="sidebar-toggle" aria-label="Collapse sidebar"></label>
+            <div class="brand">
+                <img src="Radico logo.jpg" class="logo" alt="">
+                <div class="logo-text">
+                    <h1>IT Asset</h1>
+                    <span>Management System</span>
+                </div>
+                
+            </div>
+
+            <nav class="nav-menu">
+                <a class="active" href="/"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="assets"><i class="fa-solid fa-box"></i> Assets</a>
+                <a href="assigned"><i class="fa-solid fa-user"></i> Assigned</a>
+                <a href="maintenance"><i class="fa-solid fa-wrench"></i> Maintenance </a>
+                <a href="scrap"><i class="fa-solid fa-trash"></i> Scrap Asset</a>
+            </nav>
+            <a class="topbar-badge sidebar-logout" href="/logout">Logout</a>
+        </aside>
+
+        <main class="content">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">Overview</p>
+                    <h2>Dashboard</h2>
+                </div>
+                <div class="topbar-actions">
+                    <div class="user-info">
+                        <div class="avatar"><%=user.name.charAt(0).toUpperCase()%></div>
+                        <div class="user-details">
+                        <div class="user-name"><%= user.name %></div>
+                        <div class="user-role"><%= user.role %></div>
+                        </div>
+                    </div>
+                    
+                
+               
+                </header>
+                <div class="stats-container">
+
+                   <a href="/assets" class = "stat-card">
+                    <P class="total"> Total Assets</P>
+                        <h2><%= totalAssets%></h2>
+                        <i class="fa-solid fa-cube"></i>
+
+                   </a>
+                  
+                
+                    <a href="/avlist" class="stat-card">
+                        <P class="Ava">Available Assets</P>
+                        <h2><%= totalAvailable%></h2>
+                        <i class="fa-solid fa-check"></i>
+
+                    </a>
+                    
+                    <a href="/assigned"class="stat-card">
+                         <p class="Assigned">
+                            Assigned
+                        </p>
+                        <h2><%=totalAssigned%></h2>
+                        <i class="fa-solid fa-user"></i>
+
+                    </a>
+
+                    <a href="/maintenance" class="stat-card">
+                        <p class="Maint">
+                            In Maintenance
+                        </p>
+                        <h2><%=totalRepair%></h2>
+                        <i class="fa-solid fa-wrench"></i>
+                    </a>
+                    <div class="stat-card">
+                        <p class="wrranty">
+                            Total Warranty
+                        </p>
+                        <h2><%=totalWarranty%></h2>
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                </div>
+                <div class="dashboard-middle">
+                    <div class="warranty-card">
+                    <p class="soon">
+                        Warranty Soon
+                    </p>
+                    <table class="warranty-table">
+                        <thead>
+                        
+                        <tr>
+                        <th>
+                            RDTag No
+                        </th>
+                        <th>
+                            Asset Name
+                        </th>
+                        <th>Serial NO</th>
+                        <th>Warranty_Date</th>
+                        <th>Days-left</th>
+                        </tr>
+                        </thead>
+                        
+                        <tbody>
+                       <% warrantySoon.forEach((war)=>{%>
+                        <tr>
+                            <td><%=war.RDTag_No%></td>
+                            <td><%=war.Asset_Name%></td>
+                            <td><%=war.Serial_No%></td>
+                            <td><%=new Date(war.Warranty_Date).toLocaleDateString('en-CA')%></td>
+
+                            <td><% const today = new Date();
+                                
+                                const expire = new Date(war.Warranty_Date);
+                                today.setHours(0,0,0,0);
+                                expire.setHours(0,0,0,0);
+                                
+                                const Daysleft = Math.round((expire-today)/(1000*60*60*24));
+                                 %>
+                                 <%=Daysleft %>
+                                </td>
+                        </tr>
+
+                       <%}) %>
+                       </tbody>
+                       
+
+                    </table>
+                    </div>
+                    
+
+                    <div class="category-card">
+                        <h2>Assets By Category</h2>
+                        <div class="chart-container">
+                            <canvas id = "assetCategoryChart"></canvas>
+                            
+                        </div>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+    <h3>Assets by Location</h3>
+    <div class="stats-container">
+          <div class="stat-card">
+                        <P class="P">IT</P>
+                        <h2><%= locationIT%></h2>
+
+                    </div>
+                    <div class="stat-card">
+                        <P class="P">HR</P>
+                        <h2><%= locationHR%></h2>
+
+                    </div>
+                      <div class="stat-card">
+                        <P class="P">Safety</P>
+                        <h2><%= locationSF%></h2>
+
+                    </div>
+                     <div class="stat-card">
+                        <P class="P">Commercial</P>
+                        <h2><%= locationCom%></h2>
+
+                    </div>
+                    <div class="stat-card">
+                        <P class="P">Quality Control</P>
+                        <h2><%= locationQc%></h2>
+
+                    </div>
+
+    </div>
+
+    
+</div>     
+
+                  
+        </main>
+      
+    </div>
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    // MySQL se EJS ke through data aa raha hai
+    const categories = <%- JSON.stringify(categories || []) %>;
+
+
+    // Category names
+    const categoryNames = categories.map(function(item) {
+        return item.Category;
+    });
+
+
+    // Category ki total quantity
+    const categoryTotals = categories.map(function(item) {
+        return Number(item.total);
+    });
+
+
+    // Category ke according colors
+    const colors = categoryNames.map(function(category) {
+
+        const key = String(category).trim().toLowerCase();
+
+        if (key === "laptop") {
+            return "#2196F3";       // Blue
+        }
+
+        if (key === "desktop") {
+            return "#22C55E";       // Green
+        }
+
+        if (key === "printer") {
+            return "#F59E0B";       // Orange
+        }
+
+        if (key === "monitor") {
+            return "#EF4444";       // Red
+        }
+
+        if (key === "others") {
+            return "#8B5CF6";       // Purple
+        }
+
+        // Agar koi new category hai
+        return "#06B6D4";           // Cyan
+
+    });
+
+
+    // Canvas ko select karna
+    const ctx = document.getElementById("assetCategoryChart");
+
+
+    // Doughnut Chart
+    new Chart(ctx, {
+
+        type: "doughnut",
+
+        data: {
+
+            labels: categoryNames,
+
+            datasets: [
+
+                {
+
+                    data: categoryTotals,
+
+                    backgroundColor: colors,
+
+                    borderColor: "#ffffff",
+
+                    borderWidth: 2,
+
+                    hoverOffset: 8
+
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            cutout: "55%",
+
+            plugins: {
+
+                legend: {
+
+                    position: "right"
+
+                }
+
+            }
+
+        }
+
+    });
+
+    
+
+
+
+</script>
+
+
+                
+                
+
+      
+</body>
+<script>
+    const sidebarToggle = document.getElementById("sidebar-toggle");
+
+    const isSidebarCollapsed =
+        localStorage.getItem("sidebarCollapsed") === "true";
+
+    sidebarToggle.checked = isSidebarCollapsed;
+
+    sidebarToggle.addEventListener("change", function () {
+        localStorage.setItem(
+            "sidebarCollapsed",
+            String(sidebarToggle.checked)
+        );
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assets</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
+            <label class="sidebar-toggle-button" for="sidebar-toggle" aria-label="Collapse sidebar"></label>
+            <div class="brand">
+                <img src="Radico logo.jpg" class="logo" alt="">
+                <div>
+                    <h1>IT Asset</h1>
+                    <span>Management System</span>
+                </div>
+            </div>
+
+           <nav class="nav-menu">
+                <a  href="/"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a class="active"href="assets"><i class="fa-solid fa-box"></i> Assets</a>
+                <a href="assigned"><i class="fa-solid fa-user"></i> Assigned</a>
+                <a href="maintenance"><i class="fa-solid fa-wrench"></i> Maintenance </a>
+                <a href="scrap"><i class="fa-solid fa-trash"></i> Scrap Asset</a>
+            </nav>
+            <a class="topbar-badge sidebar-logout" href="/logout">Logout</a>
+        </aside>
+
+       
+        
+
+        <main class="content">
+            <section class="page-header-card">
+                <div class="page-header-top">
+                    <div>
+                        <div class="breadcrumb">Home &gt;Assets</div>
+                        <h3 class="page-title">Assets</h3>
+                    </div>
+
+                    <div class="toolbar">
+                        <form action="/search" method="get">
+                        <div class="search-row">
+                            <div class="search-wrap">
+                                <span class="search-icon">🔎</span>
+                                <input type="text" name="name"  placeholder="Search Asset...">
+                            </div>
+                            <button type ="submit" class="btn btn-search">Search</button>
+                            
+                             
+                        </div>
+                        </form>
+                       
+                        <br>
+                        
+                        <div class="header-actions">
+                            <form  action="/import" method="post" enctype="multipart/form-data">
+                            <input type="file" name="file" accept=".csv,.xlsx,.xls">
+                            <button type="submit" class="btn btn-primary"> Import</button>
+                           
+
+                            <a  class="btn btn-primary" href="/Export">Export</a>
+                            <a href="/add" class="btn btn-primary">Add Assets</a>
+                        </div>
+                         </form>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <div class="asset-table-container">
+             <table class="assets-table">
+                <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>RDTag.No</th>
+                    <th>Make</th>
+                    <th>Category</th>
+                    <th>Model</th>
+                    <th>Serial_No</th>
+                    <th>Host_Name</th>
+                    <th>IP-Address</th>
+                    <th>Wifi-Mac</th>
+                    <th>Lan-Mac</th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                   <% Assets.forEach((Assets)=>{ %>
+                    <tr>
+                    <td>
+                        <%=Assets.Sno %>
+                    </td>
+                    <td>
+                        <a href="/asset_view/<%=Assets.RDTag_No%>"><%=Assets.RDTag_No%></a>
+                        
+                    </td>
+                      <td>
+                        <%=Assets.Asset_Name %>
+                    </td>
+                    <td>
+                        <%=Assets.Category %>
+                    </td>
+                    <td>
+                        <%=Assets.Model %>
+                    </td>
+                    <td>
+                        <%=Assets.Serial_No %>
+                    </td>
+                    <td>
+                        <%=Assets.Host%>
+                    </td>
+                    <td>
+                        <%=Assets.IP_Address%>
+                    </td>
+                    <td>
+                        <%=Assets.Wifi_mac%>
+                    </td>
+                    <td>
+                        <%=Assets.Lan_mac%>
+                    </td>
+                  
+                    </tr>
+                  <% }); %>
+                
+                </tbody>
+            </table>
+            </div>
+
+
+        </main>
+        
+        
+    </div>
+</body>
+<script>
+    const sidebarToggle = document.getElementById("sidebar-toggle");
+
+    const isSidebarCollapsed =
+        localStorage.getItem("sidebarCollapsed") === "true";
+
+    sidebarToggle.checked = isSidebarCollapsed;
+
+    sidebarToggle.addEventListener("change", function () {
+        localStorage.setItem(
+            "sidebarCollapsed",
+            String(sidebarToggle.checked)
+        );
+    });
+</script>
+
+</body>
+
+</html>

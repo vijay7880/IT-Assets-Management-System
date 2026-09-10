@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Assignment</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
+            <label class="sidebar-toggle-button" for="sidebar-toggle" aria-label="Collapse sidebar"></label>
+            <div class="brand">
+                <img src="Radico logo.jpg" class="logo" alt="">
+                <div>
+                    <h1>IT Asset</h1>
+                    <span>Management System</span>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a class="" href="/"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="assets"><i class="fa-solid fa-box"></i> Assets</a>
+                <a class="active" href="assigned"><i class="fa-solid fa-user"></i> Assigned</a>
+                <a href="maintenance"><i class="fa-solid fa-wrench"></i> Maintenance </a>
+                <a href="scrap"><i class="fa-solid fa-trash"></i> Scrap Asset</a>
+            </nav>
+            <a class="topbar-badge sidebar-logout" href="/logout">Logout</a>
+        </aside>
+
+        <main class="content">
+            <section class="page-header-card">
+                <div>
+                    <div class="breadcrumb">Home &gt; Assigned &gt; Add Assignment</div>
+                    <h3 class="page-title">Add Assignment</h3>
+                </div>
+            </section>
+
+            <form action="/assigned" method="post" class="asset-form">
+                <br>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="RDTag_No">RD Tag No</label>
+                        <select name = "RDTag_No" id="RDTag_No">
+                            <option value="">Select Tag_No </option>
+                            <% res.forEach((resp)=>{%>
+                                <option value="<%=resp.RDTag_No%>"><%=resp.RDTag_No%></option>
+
+                           <% }) %>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="E_Name">Employee Name</label>
+                        <input type="text" id="E_Name" name="E_Name" placeholder="Enter employee name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="E_ID">Employee ID</label>
+                        <input type="text" id="E_ID" name="E_ID" placeholder="Enter employee ID" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Department">Department</label>
+                        <select name="Department" id="status" required>
+                            <option value="">Select Department</option>
+                            <option value="HR">HR</option>
+                             <option value="IT">IT</option>
+                              <option value="Production">Production</option>
+                               <option value="Accounts">Accounts</option>
+                                <option value="Quality">Quality</option>
+                                 <option value="Electrical">Electrical</option>
+                                  <option value="Mechanical">Mechanical</option>
+                                   <option value="Commercial">Commercial</option>
+                                   
+
+                        </select>
+                        </div>
+                        
+
+                    
+                    <div class="form-group">
+                        <label for="Asset_Name">Asset Name</label>
+                        <input type="text" id="Asset_Name" name="Asset_Name" placeholder="Enter asset name" required>
+                    </div>
+                    
+
+                    <div class="form-group">
+                        <label for="Asset_Category">Asset Category</label>
+                          <input type="text" id="Asset_Category" name="Asset_Category" placeholder="Enter asset category" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Asset_Serial_No">Serial No</label>
+                        <input type="text" id="Asset_Serial_No" name="Asset_Serial_No" placeholder="Enter serial number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Asset_Model">Model</label>
+                        <input type="text" id="Asset_Model" name="Asset_Model" placeholder="Enter model" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Assigned_Date">Assigned Date</label>
+                        <input type="date" id="Assigned_Date" name="Assigned_Date" required>
+                    </div>
+                    
+                </div>
+
+                <div class="form-actions">
+                    <a href="/assigned" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save Assignment</button>
+                </div>
+            </form>
+        </main>
+    </div>
+      <script>
+
+document.getElementById("RDTag_No").addEventListener("change", async function () {
+
+    const RDTag_No = this.value;
+
+    console.log("Selected Tag No:", RDTag_No);
+
+    if (!RDTag_No) {
+        return;
+    }
+
+    try {
+
+        const response = await fetch(`/get-asset/${encodeURIComponent(RDTag_No)}`);
+
+        console.log("Response:", response);
+
+        const asset = await response.json();
+
+        console.log("Asset Data:", asset);
+
+        if (asset) {
+
+            document.getElementById("Asset_Name").value =
+                asset.Asset_Name || "";
+
+            document.getElementById("Asset_Category").value =
+                asset.Category || "";
+
+            document.getElementById("Asset_Model").value =
+                asset.Model || "";
+
+            document.getElementById("Asset_Serial_No").value =
+                asset.Serial_No || "";
+
+        }
+
+    } catch (error) {
+
+        console.log("Error:", error);
+
+    }
+
+});
+
+</script>
+</body>
+<script>
+    const sidebarToggle = document.getElementById("sidebar-toggle");
+
+    const isSidebarCollapsed =
+        localStorage.getItem("sidebarCollapsed") === "true";
+
+    sidebarToggle.checked = isSidebarCollapsed;
+
+    sidebarToggle.addEventListener("change", function () {
+        localStorage.setItem(
+            "sidebarCollapsed",
+            String(sidebarToggle.checked)
+        );
+    });
+</script>
+
+</body>
+
+</html>

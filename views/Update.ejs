@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Asset</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+   <div class="app-shell">
+        <aside class="sidebar">
+            <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
+            <label class="sidebar-toggle-button" for="sidebar-toggle" aria-label="Collapse sidebar"></label>
+            <div class="brand">
+                <img src="Radico logo.jpg" class="logo" alt="">
+                <div class="logo-text">
+                    <h1>IT Asset</h1>
+                    <span>Management System</span>
+                </div>
+                
+            </div>
+
+            <nav class="nav-menu">
+                <a  href="/"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a class="active" href="assets"><i class="fa-solid fa-box"></i> Assets</a>
+                <a href="assigned"><i class="fa-solid fa-user"></i> Assigned</a>
+                <a href="maintenance"><i class="fa-solid fa-wrench"></i> Maintenance </a>
+                <a href="scrap"><i class="fa-solid fa-trash"></i> Scrap Asset</a>
+            </nav>
+            <a class="topbar-badge sidebar-logout" href="/logout">Logout</a>
+        </aside>
+
+        <main class="content">
+            <section class="page-header-card">
+                <div class="page-header-top">
+                    <div>
+                        <div class="breadcrumb">Home &gt; Assets &gt; update Asset</div>
+                        <h3 class="page-title">update Asset</h3>
+                    </div>
+                </div>
+
+                <form class="asset-form" action="/update/<%=Assets.RDTag_No%>" method="post">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="assetName">RD Tag_No</label>
+                            <input id="assetName" name="RDTag_No" type="text" value="<%=Assets.RDTag_No%>">
+                        </div>
+                          <div class="form-group">
+                            <label for="category">Asset Name</label>
+                            <input id="category" name="Asset_Name" type="text" value="<%=Assets.Asset_Name%>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <input id="category" name="Category" type="text" value="<%=Assets.Category%>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="model">Model</label>
+                            <input id="model" name="Model" type="text" value="<%=Assets.Model%>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="serialNo">Serial No</label>
+                            <input id="serialNo" name="Serial_No" type="text" value="<%=Assets.Serial_No%>">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="vendor">Host</label>
+                            <input id="vendor" name="Host" type="text" value="<%=Assets.Host%>" >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="warrantyExpiry">Wifi-Mac</label>
+                            <input id="warrantyExpiry" name="Wifi_mac" type="text" value="<%=Assets.Wifi_mac%>">
+                        </div>
+                            <div class="form-group">
+                            <label for="warrantyExpiry">Lan-Mac</label>
+                            <input id="warrantyExpiry" name="Lan_mac" type="text"  value="<%=Assets.Lan_mac%>">
+                        </div>
+                            <div class="form-group">
+                            <label for="warrantyExpiry">IP Address</label>
+                            <input id="warrantyExpiry" name="IP_Address" type="text"  value="<%=Assets.IP_Address%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="warrantyExpiry">PO_No</label>
+                            <input id="warrantyExpiry" name="PO_No" type="text"  value="<%=Assets.PO_No%>">
+                        </div>
+                          <div class="form-group">
+                            <label for="warrantyExpiry">Invoice_No</label>
+                            <input id="warrantyExpiry" name="Invoice_No" type="text"  value="<%=Assets.Invoice_No%>">
+                        </div>
+                         <div class="form-group">
+                            <label for="warrantyExpiry">Invoice_Date</label>
+                            <input id="warrantyExpiry" name="Invoice_Date" type="Date"  value="<%=new Date(Assets.Invoice_Date).toLocaleDateString('en-CA')%>">
+                        </div>
+                            <div class="form-group">
+                            <label for="warrantyExpiry">Cost</label>
+                            <input id="warrantyExpiry" name="Cost" type="text"  value="<%=Assets.Cost%>">
+                        </div>
+                            <div class="form-group">
+                            <label for="warrantyExpiry">Purchase_Date</label>
+                            <input id="warrantyExpiry" name="Purchase_Date" type="Date"   value="<%= new Date(Assets.Purchase_Date).toLocaleDateString('en-CA')%>">
+                        </div>
+                              <div class="form-group">
+                            <label for="warrantyExpiry">Warranty_Date</label>
+                            <input id="warrantyExpiry" name="Warranty_Date" type="Date"   value="<%= new Date(Assets.Warranty_Date).toLocaleDateString('en-CA')%>">
+                        </div>
+                             
+                      
+
+
+
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select id="status" name="Status" required>
+                                <option value="">Select status</option>
+                                <option value="Active">Active</option>
+                                <option value="In Repair">In Repair</option>
+                                <option value="Assigned">Assigned</option>
+                                <option value="Retired">Retired</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save</button>
+                        <a href="/assets" class="btn btn-danger">Cancel</a>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

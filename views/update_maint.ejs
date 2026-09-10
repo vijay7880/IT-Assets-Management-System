@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Assignment</title>
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    
+    <div class="app-shell">
+        <aside class="sidebar">
+            <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
+            <label class="sidebar-toggle-button" for="sidebar-toggle" aria-label="Collapse sidebar"></label>
+            <div class="brand">
+               <img src="Radico logo.jpg" class="logo" alt="">
+                <div>
+                    <h1>IT Asset</h1>
+                    <span>Management System</span>
+                </div>
+            </div>
+
+           <nav class="nav-menu">
+                <a  href="/"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="assets"><i class="fa-solid fa-box"></i> Assets</a>
+                <a href="assigned"><i class="fa-solid fa-user"></i> Assigned</a>
+                <a class="active"href="maintenance"><i class="fa-solid fa-wrench"></i> Maintenance </a>
+                <a href="scrap"><i class="fa-solid fa-trash"></i> Scrap Asset</a>
+            </nav>
+            <a class="topbar-badge sidebar-logout" href="/logout">Logout</a>
+        </aside>
+
+        <main class="content">
+            <section class="page-header-card">
+                <div>
+                    <div class="breadcrumb">Home &gt; Maintenance &gt; Update Maintenance</div>
+                    <h3 class="page-title">Update Maintenance</h3>
+                </div>
+            </section>
+
+            <form action="/update_maint/<%=Maint.RDTag_No%>" method="post" class="asset-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="RDTag_No">RD Tag No</label>
+                        <input type="text" id="RDTag_No" name="RDTag_No" value="<%=Maint.RDTag_No%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Asset_Name">Asset Name</label>
+                        <input type="text" id="Asset_Name" name="Asset_Name" value="<%=Maint.Asset_Name%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Asset_Category">Asset Category</label>
+                        <input type="text" id="Asset_Category" name="Asset_Category" value="<%=Maint.Asset_Category%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Asset_Serial_No">Model No</label>
+                        <input type="text" id="Asset_Model" name="Asset_Model" value="<%=Maint.Asset_Model%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Asset_Model">Serial No</label>
+                        <input type="text" id="Asset_Model" name="Asset_Serial_No" value="<%=Maint.Asset_Serial_No%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Assigned_Date">Problem</label>
+                        <textarea type="text" id="Assigned_Date" name="Problem" value="<%=Maint.Problem%>"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Asset_Model">Action</label>
+                        <textarea type="text" id="Asset_Model" name="Action" value="<%=Maint.Action%>"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="Asset_Status">Status</label>
+                        <select name="Status" id="status" required>
+                            <option value="Active">Active</option>
+                            
+
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="/maintenance" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

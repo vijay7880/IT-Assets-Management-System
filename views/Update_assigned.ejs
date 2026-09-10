@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Assignment</title>
+    <link rel="stylesheet" href="/style.css">
+     <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
+            <label class="sidebar-toggle-button" for="sidebar-toggle" aria-label="Collapse sidebar"></label>
+            <div class="brand">
+                <img src="Radico logo.jpg" class="logo" alt="">
+                <div>
+                    <h1>IT Asset</h1>
+                    <span>Management System</span>
+                </div>
+            </div>
+
+             <nav class="nav-menu">
+                <a  href="/"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="assets"><i class="fa-solid fa-box"></i> Assets</a>
+                <a class="active"href="assigned"><i class="fa-solid fa-user"></i> Assigned</a>
+                <a href="maintenance"><i class="fa-solid fa-wrench"></i> Maintenance </a>
+                <a href="scrap"><i class="fa-solid fa-trash"></i> Scrap Asset</a>
+            </nav>
+            <a class="topbar-badge sidebar-logout" href="/logout">Logout</a>
+        </aside>
+
+        <main class="content">
+            <section class="page-header-card">
+                <div>
+                    <div class="breadcrumb">Home &gt; Assigned &gt; Update Assignment</div>
+                    <h3 class="page-title">Update Assignment</h3>
+                </div>
+            </section>
+            <br>
+
+            <form action="/update_assigned/<%=Ass.RDTag_No%>" method="post" class="asset-form">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="RDTag_No">RD Tag No</label>
+                        <input type="text" id="RDTag_No" name="RDTag_No" value="<%=Ass.RDTag_No%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="E_Name">Employee Name</label>
+                        <input type="text" id="E_Name" name="E_Name" value="<%=Ass.E_Name%>" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="E_ID">Employee ID</label>
+                        <input type="text" id="E_ID" name="E_ID" value="<%=Ass.E_ID%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Department">Department</label>
+                        <input type="text" id="Department" name="Department" value="<%=Ass.Department%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Asset_Name">Asset Name</label>
+                        <input type="text" id="Asset_Name" name="Asset_Name" value="<%=Ass.Asset_Name%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Asset_Category">Asset Category</label>
+                        <input type="text" id="Asset_Category" name="Asset_Category" value="<%=Ass.Asset_Category%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Asset_Serial_No">Serial No</label>
+                        <input type="text" id="Asset_Serial_No" name="Asset_Serial_No" value="<%=Ass.Asset_Serial_No%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Asset_Model">Model</label>
+                        <input type="text" id="Asset_Model" name="Asset_Model" value="<%=Ass.Asset_Model%>">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Assigned_Date">Assigned Date</label>
+                        <input type="date" id="Assigned_Date" name="Assigned_Date" value="<%=new Date(Ass.Assigned_Date).toLocaleDateString('en-CA')%>">
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="/assigned" class="btn btn-secondary">Cancel</a>
+                    
+                </div>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

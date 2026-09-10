@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Details</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="detail-page">
+        <div class="detail-card">
+            <div class="detail-header">
+                <div>
+                    <p class="detail-breadcrumb">Home / Maintenance</p>
+                    <h1 class="detail-title">Maintenance Details</h1>
+                </div>
+                <a href="/maintenance" class="Back">BACK</a>
+                <a href="/update_maint/<%=Maint.RDTag_No%>"class="update">Update</a>
+                <a href="/delete_main/<%=Maint.RDTag_No%>" class="delete">Delete</a>
+            </div>
+
+            <div class="detail-content">
+                <div class="detail-table">
+                    <div class="detail-row">
+                        <span class="detail-label">RD Tag No</span>
+                        <span class="detail-value"><%=Maint.RDTag_No%></span>
+                    </div>
+                 
+                    <div class="detail-row">
+                        <span class="detail-label">Asset Name</span>
+                        <span class="detail-value"><%=Maint.Asset_Name%></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Category</span>
+                        <span class="detail-value"><%=Maint.Asset_Category%></span>
+                    </div>
+                      <div class="detail-row">
+                        <span class="detail-label">Model</span>
+                        <span class="detail-value"><%=Maint.Asset_Model%></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Serial_No</span>
+                        <span class="detail-value"><%=Maint.Asset_Serial_No%></span>
+                    </div>
+                  
+                    <div class="detail-row">
+                        <span class="detail-label">Problem</span>
+                        <span class="detail-value"><%=Maint.Problem%></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Action</span>
+                        <span class="detail-value"><%=Maint.Action%></span>
+                    </div>
+                    
+                 
+                </div>
+            </div>
+
+
+                
+        
+            
+        </div>
+    </div>
+</body>
+</html>

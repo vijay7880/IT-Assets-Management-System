@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assets</title>
+    <link rel="stylesheet" href="/style.css">
+        <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
+            <label class="sidebar-toggle-button" for="sidebar-toggle" aria-label="Collapse sidebar"></label>
+            <div class="brand">
+                <img src="Radico logo.jpg" class="logo" alt="">
+                <div>
+                    <h1>IT Asset</h1>
+                    <span>Management System</span>
+                </div>
+            </div>
+
+           <nav class="nav-menu">
+                <a class="" href="/"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a href="assets"><i class="fa-solid fa-box"></i> Assets</a>
+                <a href="assigned"><i class="fa-solid fa-user"></i> Assigned</a>
+                <a href="maintenance"><i class="fa-solid fa-wrench"></i> Maintenance </a>
+                <a href="scrap"><i class="fa-solid fa-trash"></i> Scrap Asset</a>
+            </nav>
+            <a class="topbar-badge sidebar-logout" href="/logout">Logout</a>
+        </aside>
+   
+        <main class="content">
+
+
+            <section class="page-header-card">
+                <div class="page-header-top">
+                    <div>
+                        <div class="breadcrumb">Home &gt; Available</div>
+                        <h3 class="page-title">Available-List</h3>
+                    </div>
+
+                    <div class="toolbar">
+                        <div class="search-row">
+                            <div class="search-wrap">
+                                <span class="search-icon">🔎</span>
+                                <input type="text" placeholder="Search assets...">
+                            </div>
+                            <button class="btn btn-search">Search</button>
+                        </div>
+                        <br>
+                        
+                    </div>
+                </div>
+            </section>
+            <table class="assets-table">
+                 <thead></thead>
+                <tr>
+                    <th>S_No</th>
+                
+                    <th>
+                        
+                        RDTag No
+                    </th>
+                    <th>Asset Name</th>
+                    <th>Category</th>
+                    <th>Serial No</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                 </thead>
+                <tbody>
+
+                <% res.forEach((res)=>{%>
+                    <tr>
+                        <td><%=res.Sno%></td>
+                        <td><%=res.RDTag_No%></td>
+                        <td><%=res.Asset_Name%></td>
+                        <td><%=res.Category%></td>
+                        <td><%=res.Serial_No%></td>
+                        <td><%=res.Status%></td>
+
+                        <td>
+                            <div class="action-links">
+                                 <a href="/asset_view/<%=res.RDTag_No%>">VIEW</a>
+                            </div>
+                        </td>
+                    </tr>
+
+                <%})%>
+                
+                   
+                </tbody>
+            </table>
+           
+       
+           
+        </main>
+    </div>
+</body>
+</html>

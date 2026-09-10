@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  
+  <main class="auth-page">
+    <section class="auth-card">
+      <img src = "Radico logo.jpg" class = "logo">
+      <h1>IT Assets Management System</h1>
+      
+      
+      <% if (error) { %>
+        <div class="auth-error"><%= error %></div>
+      <% } %>
+      <form action="/login" method="post">
+        <label for="">Username</label>
+        <input type="text" name="name" required>
+       
+        <label>Password</label>
+        <input type="password" name="password" required />
+
+        <button type="submit">Login</button>
+      </form>
+      <p>
+        Don’t have an account? <a href="/register">Sign up</a>
+      </p>
+      <p><a href="/reset">Forget Password</a></p>
+      
+    </section>
+  </main>
+</body>
+</html>
