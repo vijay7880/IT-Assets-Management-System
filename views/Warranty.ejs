@@ -39,30 +39,38 @@
             <section class="page-header-card">
                 <div class="page-header-top">
                     <div>
-                        <div class="breadcrumb">Home &gt; Available</div>
-                        <h3 class="page-title">Available-List</h3>
+                        <div class="breadcrumb"><a class="breadcrumb" href="/">Home</a> &gt; Warranty Expire</div>
+                        <h3 class="page-title">Warranty Expire-List</h3>
                     </div>
 
                     <div class="toolbar">
                         
                         <br>
+                         <div class="header-actions">
+                            <a  class="btn btn-primary" href="/ExportWarranty">Export</a>
+                            
+
+                            
+                        </div>
                         
                     </div>
                 </div>
             </section>
            
             
-<div class="asset-container-table">
+            
+<div class="asset-table-container">
             <table class="assets-table">
                  <thead>
                 <tr>
                     <th>S_No</th>
-                    <th>RDTag No</th>
+                    <th> RDTag No</th>
                     <th>Asset Name</th>
                     <th>Category</th>
                     <th>Serial No</th>
-                    <th>Status</th>
-                    
+                    <th>Purchase_Date</th>
+                    <th>Warranty_Date</th>
+                   
                 </tr>
                  </thead>
                 <tbody>
@@ -74,9 +82,10 @@
                         <td><%=res.Asset_Name%></td>
                         <td><%=res.Category%></td>
                         <td><%=res.Serial_No%></td>
-                        <td><%=res.Status%></td>
+                        <td><%=new Date(res.Purchase_Date).toLocaleDateString('en-CA')%></td>
+                        <td><%=new Date(res.Warranty_Date).toLocaleDateString('en-CA')%></td>
 
-                        
+                       
                     </tr>
 
                 <%})%>
@@ -84,8 +93,8 @@
                    
                 </tbody>
             </table>
-            </div>
-        
+            <div>
+            
            
        
            
@@ -103,7 +112,7 @@ $(document).ready(function () {
         searching: true
     });
 
-  
+
 });
 </script>
 </body>

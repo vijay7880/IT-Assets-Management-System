@@ -32,4 +32,48 @@ router.get('/Export', allowRoles('manager', 'admin'), async (_req, res, next) =>
   } catch (error) { next(error); }
 });
 
+router.get('/ExportAssigned',allowRoles('manager','admin'),async(_req,res,next)=>{
+  try{
+    const[rows] = await db.query('select * from Assigned');
+    const worksheet = xlsx.utils.json_to_sheet(rows);
+    const workbook  = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook,worksheet,'Assigned');
+    res.type('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet').attachment('Assigned.xlsx').send(xlsx.write(workbook, { bookType: 'xlsx', type: 'buffer' }));
+  } catch(error){next(error);}
+
+});
+
+router.get('/ExportMaintenance',allowRoles('manager','admin'),async(_req,res,next)=>{
+  try{
+    const [rows]= await db.query('select * from Maintenance');
+    const worksheet = xlsx.utils.json_to_sheet(rows);
+    const workbook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook,worksheet,'Maintenance');
+     res.type('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet').attachment('Maintenance.xlsx').send(xlsx.write(workbook, { bookType: 'xlsx', type: 'buffer' }));
+  } catch(error){next(error);}
+});
+
+router.get('/ExportScrap',allowRoles('manager','admin'),async(_req,res,next)=>{
+  try{
+    const [rows] = await db.query('select * from Scrap');
+    const worksheet = xlsx.utils.json_to_sheet(rows);
+    const workbook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook,worksheet,'Scrap');
+     res.type('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet').attachment('Scrap.xlsx').send(xlsx.write(workbook, { bookType: 'xlsx', type: 'buffer' }));
+  } catch(error){next(error);}
+  
+});
+
+router.get('/ExportWarranty',allowRoles('manager','admin'),async(_req,res,next)=>{
+  try{
+    const [rows] = await db.query("Select * from Assets where Warranty_Date <= DATE_ADD(CURDATE(),INTERVAL 30 day)");
+    const worksheet = xlsx.utils.json_to_sheet(rows);
+    const workbook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook,worksheet,'Assets');
+    res.type('application/vnd.openxmlformats-officedocument.spreadsheetml.sheet').attachment('Warranty_Expire.xlsx').send(xlsx.write(workbook,{bookType:'xlsx',type:'buffer'}))
+
+  }
+  catch(errr){next(errr);}
+})
+
 export default router;

@@ -7,19 +7,21 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+      <link rel="stylesheet"
+      href="https://cdn.datatables.net/2.3.3/css/dataTables.dataTables.min.css">
 </head>
 <body>
     <div class="app-shell">
         <aside class="sidebar">
             <input class="sidebar-toggle" type="checkbox" id="sidebar-toggle">
             <label class="sidebar-toggle-button" for="sidebar-toggle" aria-label="Collapse sidebar"></label>
-            <div class="brand">
-                <img src="Radico logo.jpg" class="logo" alt="">
+             <a class="brand" href="/"><img src="Radico logo.jpg" class="logo" alt="">
                 <div>
                     <h1>IT Asset</h1>
                     <span>Management System</span>
                 </div>
-            </div>
+                </a>
+            
 
            <nav class="nav-menu">
                 <a  href="/"><i class="fa-solid fa-house"></i> Dashboard</a>
@@ -38,22 +40,13 @@
             <section class="page-header-card">
                 <div class="page-header-top">
                     <div>
-                        <div class="breadcrumb">Home &gt;Assets</div>
+                        <div class="breadcrumb"><a class="breadcrumb" href="/">Home</a> &gt;Assets</div>
                         <h3 class="page-title">Assets</h3>
                     </div>
 
                     <div class="toolbar">
-                        <form action="/search" method="get">
-                        <div class="search-row">
-                            <div class="search-wrap">
-                                <span class="search-icon">🔎</span>
-                                <input type="text" name="name"  placeholder="Search Asset...">
-                            </div>
-                            <button type ="submit" class="btn btn-search">Search</button>
-                            
-                             
-                        </div>
-                        </form>
+                       
+                        
                        
                         <br>
                         
@@ -72,6 +65,8 @@
                 </div>
             </section>
 
+            <!-- Aapka custom search box -->
+
             <div class="asset-table-container">
              <table class="assets-table">
                 <thead>
@@ -80,12 +75,12 @@
                     <th>RDTag.No</th>
                     <th>Make</th>
                     <th>Category</th>
-                    <th>Model</th>
+                    <th>Asset_Model</th>
                     <th>Serial_No</th>
                     <th>Host_Name</th>
                     <th>IP-Address</th>
-                    <th>Wifi-Mac</th>
-                    <th>Lan-Mac</th>
+                    <th>Status</th>
+                   
                 </tr>
                 </thead>
                 <tbody>
@@ -96,7 +91,7 @@
                         <%=Assets.Sno %>
                     </td>
                     <td>
-                        <a href="/asset_view/<%=Assets.RDTag_No%>"><%=Assets.RDTag_No%></a>
+                        <a class="action-link" href="/asset_view/<%=Assets.RDTag_No%>"><%=Assets.RDTag_No%></a>
                         
                     </td>
                       <td>
@@ -118,11 +113,10 @@
                         <%=Assets.IP_Address%>
                     </td>
                     <td>
-                        <%=Assets.Wifi_mac%>
+                        <%=Assets.Status%>
                     </td>
-                    <td>
-                        <%=Assets.Lan_mac%>
-                    </td>
+                  
+                  
                   
                     </tr>
                   <% }); %>
@@ -151,6 +145,25 @@
             String(sidebarToggle.checked)
         );
     });
+</script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.datatables.net/2.3.3/js/dataTables.min.js"></script>
+
+<script>
+$(document).ready(function () {
+    const assetTable = $('.assets-table').DataTable({
+        paging: false,
+        info: false,
+       
+        searching: true
+       
+    });
+
+   $('#assetSearch').on('keyup',function(){
+    assetTable.search(this.value).draw();
+   });
+});
 </script>
 
 </body>

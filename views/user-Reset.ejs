@@ -1,33 +1,35 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
+  <title>Forgot Password</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  
   <main class="auth-page">
     <section class="auth-card">
       <img src = "Radico logo.jpg" class = "logo">
-      <h1>IT Assets Management System</h1>
-      
-      
+      <h1>Reset Password</h1>
       <% if (error) { %>
         <div class="auth-error"><%= error %></div>
       <% } %>
-      <form action="/login" method="post">
-        <label for="">Username</label>
-        <input type="text" name="name" required>
-       
+   
+      <form action="/user_reset" method="post">
+        <label>Username</label>
+        <input type="name" name="name" required />
+
         <label>Password</label>
         <input type="password" name="password" required />
 
-        <button type="submit">Login</button>
+        <label>Confirm Password</label>
+        <input type="password" name="confirmPassword" required />
+
+        <button type="submit">Update Password</button>
       </form>
-      <p><a href="/reset">Forgot password?</a></p>
-     
+      <p>
+         <a href="/" class="cancel">Cancel</a>
+      </p>
       
     </section>
   </main>

@@ -15,6 +15,7 @@
             <label class="sidebar-toggle-button" for="sidebar-toggle" aria-label="Collapse sidebar"></label>
             <div class="brand">
                 <img src="Radico logo.jpg" class="logo" alt="">
+                
                 <div class="logo-text">
                     <h1>IT Asset</h1>
                     <span>Management System</span>
@@ -30,7 +31,20 @@
                 <a href="scrap"><i class="fa-solid fa-trash"></i> Scrap Asset</a>
             </nav>
             <a class="topbar-badge sidebar-logout" href="/logout">Logout</a>
+                        <% if(user && user.role === 'admin'){%>
+                 <a class="ragister" href="/register" title="Sign up">Sign up</a>
+                
+            <%}%>
+                            <% if(user && user.role === 'admin'){%>
+                <a class="reset" href="/user_reset" title="Forget Password">Forget Password</a>
+
+             <% }%>
+      
+      
         </aside>
+
+         
+       
 
         <main class="content">
             <header class="topbar">
@@ -40,7 +54,7 @@
                 </div>
                 <div class="topbar-actions">
                     <div class="user-info">
-                        <div class="avatar"><%=user.name.charAt(0).toUpperCase()%></div>
+                        <a href="/logout"><div class="avatar"><%=user.name.charAt(0).toUpperCase()%></div></a>
                         <div class="user-details">
                         <div class="user-name"><%= user.name %></div>
                         <div class="user-role"><%= user.role %></div>
@@ -83,13 +97,13 @@
                         <h2><%=totalRepair%></h2>
                         <i class="fa-solid fa-wrench"></i>
                     </a>
-                    <div class="stat-card">
+                    <a href="/warranty" class="stat-card">
                         <p class="wrranty">
                             Total Warranty
                         </p>
                         <h2><%=totalWarranty%></h2>
                         <i class="fa-solid fa-shield-halved"></i>
-                    </div>
+                    </a>
 
                 </div>
                 <div class="dashboard-middle">
@@ -191,7 +205,7 @@
 
 <script>
 
-    // MySQL se EJS ke through data aa raha hai
+    // Data is coming from mysql to ejs
     const categories = <%- JSON.stringify(categories || []) %>;
 
 
@@ -201,19 +215,19 @@
     });
 
 
-    // Category ki total quantity
+    //  total quantity of Categories
     const categoryTotals = categories.map(function(item) {
         return Number(item.total);
     });
 
 
-    // Category ke according colors
+    // Category according colors
     const colors = categoryNames.map(function(category) {
 
         const key = String(category).trim().toLowerCase();
 
         if (key === "laptop") {
-            return "#2196F3";       // Blue
+            return "#2196F3";       // Blue    
         }
 
         if (key === "desktop") {
@@ -232,7 +246,7 @@
             return "#8B5CF6";       // Purple
         }
 
-        // Agar koi new category hai
+        // for any new category item
         return "#06B6D4";           // Cyan
 
     });
@@ -283,7 +297,23 @@
 
                 legend: {
 
-                    position: "right"
+                    position: "right",
+                    labels: {
+                        generateLabels: function(chart) {
+                            const dataset = chart.data.datasets[0];
+
+                            return chart.data.labels.map(function(label, index) {
+                                return {
+                                    text: `${label}: ${dataset.data[index]} item${dataset.data[index] === 1 ? "" : "s"}`,
+                                    fillStyle: dataset.backgroundColor[index],
+                                    strokeStyle: dataset.borderColor,
+                                    lineWidth: dataset.borderWidth,
+                                    hidden: false,
+                                    index: index
+                                };
+                            });
+                        }
+                    }
 
                 }
 

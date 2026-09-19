@@ -15,8 +15,17 @@
                     <h1 class="detail-title">Assigned Details</h1>
                 </div>
                 <a href="/assigned" class="Back">Back to Assigned</a>
-                 <a href="/update_assigned/<%=Ass.RDTag_No%>" class="update">UPDATE</a>
-                <a href="/delete_assigned/<%=Ass.RDTag_No%>" class="delete">DELETE</a>
+                <% if(user && user.role === 'admin'||'manager' ){%>
+                     <a href="/update_assigned/<%=Ass.RDTag_No%>" class="update">UPDATE</a>
+
+               <% } %>
+
+               <%if(user && user.role === 'admin'){%>
+                <a href="/delete_assigned/<%=Ass.RDTag_No%>" class="delete" onclick="return confirm('Are you sure want to delete');">DELETE</a>
+
+               <%} %>
+                
+                
             </div>
 
             <div class="detail-content">
@@ -68,5 +77,6 @@
             
         </div>
     </div>
+   
 </body>
 </html>

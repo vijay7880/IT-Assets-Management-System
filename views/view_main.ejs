@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Asset Details</title>
     <link rel="stylesheet" href="/style.css">
+    
 </head>
 <body>
     <div class="detail-page">
@@ -15,9 +16,17 @@
                     <h1 class="detail-title">Maintenance Details</h1>
                 </div>
                 <a href="/maintenance" class="Back">BACK</a>
-                <a href="/update_maint/<%=Maint.RDTag_No%>"class="update">Update</a>
-                <a href="/delete_main/<%=Maint.RDTag_No%>" class="delete">Delete</a>
+                <% if (user && (user.role === 'admin' || user.role === 'manager')) { %>
+                     <a href="/update_maint/<%=Maint.RDTag_No%>"class="update">Update</a>
+
+
+                <%}%>
+                 <% if (user && user.role === 'admin') { %>
+               
+                <a href="/delete_main/<%=Maint.RDTag_No%>" class="delete" onclick="return confirm('Are you sure want to Delete')">Delete</a>
+                 <%}%>
             </div>
+           
 
             <div class="detail-content">
                 <div class="detail-table">
@@ -51,14 +60,14 @@
                         <span class="detail-label">Action</span>
                         <span class="detail-value"><%=Maint.Action%></span>
                     </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Date</span>
+                        <span class="detail-value"><%=new Date(Maint.Date).toLocaleDateString('en-CA')%></span>
+                    </div>
                     
                  
                 </div>
             </div>
-
-
-                
-        
             
         </div>
     </div>

@@ -10,7 +10,7 @@
   <main class="auth-page">
     <section class="auth-card">
       <img src = "Radico logo.jpg" class = "logo">
-      <h1>Ragister New User</h1>
+      <h1><%= firstRegistration ? 'Create Admin Account' : 'Register New User' %></h1>
       <% if (error) { %>
         <div class="auth-error"><%= error %></div>
       <% } %>
@@ -18,13 +18,19 @@
         <label>Name</label>
         <input type="text" name="name" required />
 
+        <% if (firstRegistration) { %>
+        <label>Email</label>
+        <input type="email" name="email" required />
+        <% } %>
+
+        <% if (!firstRegistration) { %>
         <label>Role</label>
         <select name="role" required>
           <option value="">Select Role</option>
-          <option value="admin">Admin</option>
           <option value="manager">Manager</option>
           <option value="user">User</option>
         </select>
+        <% } %>
 
   
         <label>Password</label>

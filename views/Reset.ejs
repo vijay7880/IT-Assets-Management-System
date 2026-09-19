@@ -3,38 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register</title>
+  <title>Forgot Password</title>
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
   <main class="auth-page">
     <section class="auth-card">
       <img src = "Radico logo.jpg" class = "logo">
-      <h1>IT Assets Management System</h1>
+      <h1>Reset Admin Password</h1>
+      <% if (error) { %>
+        <div class="auth-error"><%= error %></div>
+      <% } %>
    
       <form action="/reset" method="post">
-        <label>Name</label>
-        <input type="text" name="name" required />
+        <label>Admin Email</label>
+        <input type="email" name="email" required />
 
-        <label>Role</label>
-        <select name="role" required>
-          <option value="">Select Role</option>
-          <option value="admin">Admin</option>
-          <option value="manager">Manager</option>
-          <option value="user">User</option>
-        </select>
-
-  
         <label>Password</label>
         <input type="password" name="password" required />
 
         <label>Confirm Password</label>
         <input type="password" name="confirmPassword" required />
 
-        <button type="submit">Update</button>
+        <button type="submit">Update Password</button>
       </form>
       <p>
-         <a href="/login" class="cancel">Cancel</a>
+         <a href="/logout" class="cancel">Cancel</a>
       </p>
       
     </section>

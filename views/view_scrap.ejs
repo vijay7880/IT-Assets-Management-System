@@ -15,7 +15,11 @@
                     <h1 class="detail-title">Scrap Details</h1>
                 </div>
                 <a href="/scrap" class="Back">Back to Scrap</a>
-                 <a href="/delete_scrap/<%=res.RDTag_No%>" class="delete">Delete</a>
+                <%if(user&& user.role === 'admin'){
+                    <a href="/delete_scrap/<%=res.RDTag_No%>" class="delete" onclick="return confirm('Are you sure want to delete')">Delete</a>
+
+                }%>
+                 
             </div>
 
             <div class="detail-content">

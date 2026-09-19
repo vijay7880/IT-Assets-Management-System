@@ -15,8 +15,16 @@
                     <h1 class="detail-title">Asset Details</h1>
                 </div>
              <a href="/assets" class="Back">Back to Assets</a>
-             <a href="/update/<%=Assets.RDTag_No%>" class="update">UPDATE</a>
-            <a href="/delete/<%=Assets.RDTag_No%>" class="delete">DELETE</a>
+             <% if (user && (user.role === 'admin' || user.role === 'manager')) { %>
+                 <a href="/update/<%=Assets.RDTag_No%>" class="update">UPDATE</a>
+
+             <%}%>
+             <% if (user&& user.role === 'admin') {%>
+                <a href="/delete/<%=Assets.RDTag_No%>" class="delete" onclick="return confirm('Are you sure want to delete')">DELETE</a>
+
+             <%}%>
+            
+            
             </div>
           
             
@@ -96,5 +104,7 @@
         </div>
         
     </div>
+
 </body>
+
 </html>
