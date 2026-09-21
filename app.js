@@ -20,7 +20,7 @@ app.use(express.static(path.resolve('public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(session({ secret: env.sessionSecret, resave: false, saveUninitialized: false, cookie: { maxAge: 1000 * 60 * 60 * 2, secure: env.nodeEnv === 'production' } }));
-app.use((req, res, next) => { res.locals.currentUser = req.session?.userName ?? null; res.locals.currentUserRole = req.session?.userRole ?? null; next(); });
+app.use((req, res, next) => { res.locals.user = req.session?.user ?? null; res.locals.currentUser = req.session?.userName ?? null; res.locals.currentUserRole = req.session?.userRole ?? null; next(); });
 app.use((req, res, next) => { if (publicRoutes.includes(req.path) || req.session.userId) return next(); res.redirect('/login'); });
 
 app.use(authRoutes);

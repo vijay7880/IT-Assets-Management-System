@@ -1,0 +1,39 @@
+services:
+
+  app:
+    build:
+      context: .
+      dockerfile: dockerfile
+
+    ports:
+      - "3000:3000"
+
+    restart: unless-stopped
+
+    depends_on:
+      - db
+
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: 123456789
+      DB_NAME: It_assets
+      DB_PORT: 3306
+
+  db:
+    image: mysql:8.0
+
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456789
+      MYSQL_DATABASE: It_assets
+
+    ports:
+      - "3307:3306"
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:

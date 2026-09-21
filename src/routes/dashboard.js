@@ -26,7 +26,7 @@ router.get('/', async (req, res, next) => {
 router.get('/warranty',async(req,res)=>{
   try{
     const [result] = await db.query("Select * from Assets where Warranty_Date <= DATE_ADD(CURDATE(),INTERVAL 30 day )");
-    res.render('warranty',{res:result});
+    res.render("Warranty",{res:result});
 
   }
   catch(err){

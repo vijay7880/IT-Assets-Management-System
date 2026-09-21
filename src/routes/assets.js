@@ -14,7 +14,7 @@ router.get('/assets', async (req, res, next) =>
               catch (e) {
                  next(e);
                  } });
-router.get('/search', async (req, res, next) => { try { const value = `%${req.query.name || ''}%`; const [Assets] = await db.query('SELECT * FROM Assets WHERE RDTag_No LIKE ? OR Asset_Name LIKE ? OR Category LIKE ?', [value, value, value]); res.render('Assets', { Assets }); } catch (e) { next(e); } });
+
 router.get('/avlist', async (req, res, next) => { try { const [result] = await db.query('SELECT * FROM Assets WHERE Status = "Active"'); res.render('Available_Assets', { res: result }); } catch (e) { next(e); } });
 router.get('/add', allowRoles('admin', 'manager'), (_req, res) => res.render('Add_Asset'));
 router.post('/assets', allowRoles('manager', 'admin'), async (req, res, next) => { try { await db.query(`INSERT INTO Assets (${assetFields.join(',')}) VALUES (${assetFields.map(() => '?').join(',')})`, valuesFrom(req.body)); res.send('<script>alert("Asset Added Successfully"); window.location.href = "/assets";</script>'); } catch (e) { next(e); } });

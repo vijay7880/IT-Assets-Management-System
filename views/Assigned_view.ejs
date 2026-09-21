@@ -15,7 +15,7 @@
                     <h1 class="detail-title">Assigned Details</h1>
                 </div>
                 <a href="/assigned" class="Back">Back to Assigned</a>
-                <% if(user && user.role === 'admin'||'manager' ){%>
+                 <% if (user && (user.role === 'admin' || user.role === 'manager')) { %>
                      <a href="/update_assigned/<%=Ass.RDTag_No%>" class="update">UPDATE</a>
 
                <% } %>

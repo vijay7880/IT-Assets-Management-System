@@ -15,10 +15,10 @@
                     <h1 class="detail-title">Scrap Details</h1>
                 </div>
                 <a href="/scrap" class="Back">Back to Scrap</a>
-                <%if(user&& user.role === 'admin'){
+                <%if(user&& user.role === 'admin'){%>
                     <a href="/delete_scrap/<%=res.RDTag_No%>" class="delete" onclick="return confirm('Are you sure want to delete')">Delete</a>
 
-                }%>
+                <%}%>
                  
             </div>
 
@@ -39,11 +39,6 @@
                     <div class="detail-row">
                         <span class="detail-label">Serial No</span>
                         <span class="detail-value"><%=res.Serial_No%></span>
-                    </div>
-               
-                    <div class="detail-row">
-                        <span class="detail-label">Department</span>
-                        <span class="detail-value"><%=res.Department%></span>
                     </div>
                     <div class="detail-row">
                         <span class="detail-label">Host</span>
