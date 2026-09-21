@@ -1,9 +1,11 @@
 import { Router } from 'express';
 import { db } from '../config/database.js';
 
+
+
 const router = Router();
 
-router.get('/', async (req, res, next) => {
+router.get('/',async (req, res, next) => {
   try {
     const [[total], [available], [assigned], [repair], [warranty], [categories], [it], [hr], [safety], [commercial], [quality], [warrantyList]] = await Promise.all([
       db.query('SELECT COUNT(*) AS total FROM Assets'),

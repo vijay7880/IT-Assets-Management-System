@@ -45,4 +45,14 @@ if (process.env.NODE_ENV !== 'test') {
   startServer().catch(error => { console.error('Unable to start application:', error); process.exitCode = 1; });
 }
 
+function isAuthenticated(req,res,next){
+  if(req.session && req.session.user){
+    return next();
+  }
+  res.setHeader('Cache-Control','no-store,no-cache,must-revalidate,private');
+  res.setHeader('Pragma','no-cache');
+  res.setHeader('Expires','0');
+  return res.redirect('/login');
+}
+
 export default app;

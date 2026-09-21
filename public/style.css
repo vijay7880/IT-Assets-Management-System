@@ -180,11 +180,16 @@ select {
     font-size: 18px;
     font-weight: 600;
     text-transform: uppercase;
+   
 }
 .user-details{
     flex-direction: column;
     line-height: 1.2;
     display: flex;
+   
+}
+.anchor{
+    text-decoration: none;
 }
 .user-name{
     font-size: 20px;
