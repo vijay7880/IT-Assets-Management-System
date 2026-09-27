@@ -39,6 +39,7 @@ router.post('/update_maint/:RDTag_No', allowRoles('manager', 'admin'), async (re
          await db.query(`UPDATE Maintenance SET ${fields.map(field => `${field} = ?`).join(',')} WHERE RDTag_No = ?`, [...valuesFrom(req.body), req.params.RDTag_No]);
     const RDTag_No = req.params.RDTag_No;
 await db.query('update Assets set Status = ? where RDTag_No = ?',['Active',RDTag_No]);
+await db.query(`delete from Maintenance where Status = 'Active'`);
 
 
 res.redirect('/maintenance'); } catch (e) { next(e); } });

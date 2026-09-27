@@ -117,11 +117,10 @@ select {
 .sidebar:has(.sidebar-toggle:checked) .ragister,
 .sidebar:has(.sidebar-toggle:checked) .reset {
     font-size: 0;
-    
-    
- 
-
 }
+    
+    
+
 
 
 .sidebar:has(.sidebar-toggle:checked) .nav-menu a::before,
@@ -139,21 +138,21 @@ select {
 .sidebar:has(.sidebar-toggle:checked) .nav-menu a:nth-child(4)::before { content: "\f0ad"; }
 .sidebar:has(.sidebar-toggle:checked) .nav-menu a:nth-child(5)::before { content: "\f2ed" }
 .sidebar:has(.sidebar-toggle:checked) .sidebar-logout::before { content: "\f2f5"; }
-.sidebar:has(.sidebar-toggle:checked) .ragister {
-    bottom: 64px;
-    left: 30px;
+
+.sidebar:has(.sidebar-toggle:checked) .ragister{
+  display: none;
 }
-.sidebar:has(.sidebar-toggle:checked) .ragister::before 
+ 
+
 .sidebar:has(.sidebar-toggle:checked) .reset {
-    bottom: 22px;
-    left: 30px;
+    display: none;
+
+    
 }
-.sidebar:has(.sidebar-toggle:checked) .reset::before 
-
-
 
 .sidebar:has(.sidebar-toggle:checked) .sidebar-toggle-button::before {
     content: ">";
+   
 }
 
 .brand {
