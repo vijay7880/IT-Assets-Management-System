@@ -75,6 +75,7 @@
                                   <option value="Mechanical">Mechanical</option>
                                    <option value="Commercial">Commercial</option>
                                    
+                                   
 
                         </select>
                         </div>
@@ -83,28 +84,28 @@
                     
                     <div class="form-group">
                         <label for="Asset_Name">Asset Name</label>
-                        <input type="text" id="Asset_Name" name="Asset_Name" placeholder="Enter asset name" required>
+                        <input type="text" id="Asset_Name" name="Asset_Name" placeholder="Enter asset name" required readonly>
                     </div>
                     
 
                     <div class="form-group">
                         <label for="Asset_Category">Asset Category</label>
-                          <input type="text" id="Asset_Category" name="Asset_Category" placeholder="Enter asset category" required>
+                          <input type="text" id="Asset_Category" name="Asset_Category" placeholder="Enter asset category" required readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="Asset_Serial_No">Serial No</label>
-                        <input type="text" id="Asset_Serial_No" name="Asset_Serial_No" placeholder="Enter serial number" required>
+                        <input type="text" id="Asset_Serial_No" name="Asset_Serial_No" placeholder="Enter serial number" required readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="Asset_Model">Model</label>
-                        <input type="text" id="Asset_Model" name="Asset_Model" placeholder="Enter model" required>
+                        <input type="text" id="Asset_Model" name="Asset_Model" placeholder="Enter model" required readonly>
                     </div>
 
                     <div class="form-group">
                         <label for="Assigned_Date">Assigned Date</label>
-                        <input type="date" id="Assigned_Date" name="Assigned_Date" required>
+                        <input type="date" id="Assigned_Date" name="Assigned_Date" max="<%= new Date().toISOString().split('T')[0]%>"  required>
                     </div>
                     
                 </div>

@@ -117,6 +117,10 @@ select {
 .sidebar:has(.sidebar-toggle:checked) .ragister,
 .sidebar:has(.sidebar-toggle:checked) .reset {
     font-size: 0;
+    
+    
+ 
+
 }
 
 
@@ -258,16 +262,30 @@ select {
 }
 .ragister{
     position: absolute;
+    width: 90px;
+   
+    margin-left: 10px;
+    padding: 5px 15px;
+    font-weight: 100;
+    background-color: rgb(9, 107, 50);
+    border-radius: 10px;
     bottom: 20px;
-    left: 20px;
-    color: black;
+    left: 2px;
+    color:white;
     text-decoration: none;
 }
 .reset{
-    position: absolute;
+      position: absolute;
+    width: 150px;
+   
+    margin-left: 10px;
+    padding: 5px 15px;
+    font-weight: 100;
+    background-color: rgb(9, 107, 50);
+    border-radius: 10px;
     bottom: 20px;
-    left:100px;
-    color: black;
+    left: 110px;
+    color:white;
     text-decoration: none;
 }
 

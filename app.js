@@ -38,7 +38,7 @@ app.use((error, _req, res, _next) => {
 
 export async function startServer() {
   await initializeDatabase();
-  return app.listen(env.port, () => console.log(`IT Asset System running on port ${env.port}`));
+  return app.listen(env.port,'0.0.0.0', () => console.log(`IT Asset System running on port ${env.port}`));
 }
 
 if (process.env.NODE_ENV !== 'test') {

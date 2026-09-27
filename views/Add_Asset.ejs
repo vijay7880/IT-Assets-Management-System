@@ -44,7 +44,7 @@
                     <div class="form-grid">
                         <div class="form-group">
                             <label for="assetName">RDTag_No</label>
-                            <input id="assetName" name="RDTag_No" type="text" placeholder="Enter asset name" required>
+                            <input id="assetName" name="RDTag_No" type="text" placeholder="Enter Tag_No" required>
                         </div>
                          <div class="form-group">
                             <label for="category">Make</label>
@@ -83,12 +83,12 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="warrantyExpiry">Wifi-Mac</label>
-                            <input id="warrantyExpiry" name="Wifi_mac" type="text"  placeholder="Enter Wifi-Mac" required>
+                            <label for="warrantyExpiry">WIFI-MAC</label>
+                            <input id="warrantyExpiry" name="WIFI_MAC" type="text"  placeholder="Enter WIFI-MAC" required>
                         </div>
                             <div class="form-group">
-                            <label for="warrantyExpiry">Lan-Mac</label>
-                            <input id="warrantyExpiry" name="Lan_mac" type="text"  placeholder="Enter Lan-Mac" required>
+                            <label for="warrantyExpiry">LAN-MAC</label>
+                            <input id="warrantyExpiry" name="LAN_MAC" type="text"  placeholder="Enter LAN-MAC" required>
                         </div>
                             <div class="form-group">
                             <label for="warrantyExpiry">IP Address</label>
@@ -104,16 +104,13 @@
                         </div>
                          <div class="form-group">
                             <label for="warrantyExpiry">Invoice_Date</label>
-                            <input id="warrantyExpiry" name="Invoice_Date" type="date"  placeholder="Enter Invoice_Date" required>
-                        </div>
+                            <input id="warrantyExpiry" name="Invoice_Date" type="date"  max="<%= new Date().toISOString().split('T')[0]%>" required>
+                         </div>
                             <div class="form-group">
                             <label for="warrantyExpiry">Cost</label>
                             <input id="warrantyExpiry" name="Cost" type="text"  placeholder="Enter Cost" required>
-                        </div>
-                             <div class="form-group">
-                            <label for="warrantyExpiry">Purchase_Date</label>
-                            <input id="warrantyExpiry" name="Purchase_Date" type="date"  placeholder="Enter Purchase_Date" required>
-                        </div>
+                            </div>
+                       
                               <div class="form-group">
                             <label for="warrantyExpiry">Warranty_Date</label>
                             <input id="warrantyExpiry" name="Warranty_Date" type="date"  placeholder="Enter Warranty_Date" required>
@@ -131,6 +128,7 @@
                             </select>
                         </div>
                     </div>
+                    
 
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary">Save</button>
