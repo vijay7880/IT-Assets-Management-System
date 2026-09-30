@@ -2,4 +2,6 @@ node_modules/
 .env
 uploads/*
 !uploads/.gitkeep
+public/*.jpg
+public/*.jpeg
 npm-debug.log*
