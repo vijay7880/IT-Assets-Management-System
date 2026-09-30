@@ -28,7 +28,10 @@ router.post('/add_maintenance', allowRoles('manager', 'admin'), async (req, res,
     const ticketNo = Ticket_No();
     req.body.Ticket_No = ticketNo;
     await db.query(`INSERT INTO Maintenance (${insertFields.join(',')}) VALUES (${insertFields.map(() => '?').join(',')})`, [req.body.Ticket_No, ...valuesFrom(req.body)]);
-     await db.query('UPDATE Assets SET Status = ? WHERE Serial_No = ?', ['In Repair', req.body.Asset_Serial_No]); res.send('<script>alert("Added Successfully"); window.location.href = "/add_main";</script>'); }
+     await db.query('UPDATE Assets SET Status = ? WHERE Serial_No = ?', ['In Repair', req.body.Asset_Serial_No]);
+     await db.query(`delete from Assigned where Status = 'Assigned'`);
+     
+     res.send('<script>alert("Added Successfully"); window.location.href = "/add_main";</script>'); }
       catch (e) { next(e); } });
 
 router.get('/delete_main/:RDTag_No', allowRoles('admin'), async (req, res, next) => { try { await db.query('DELETE FROM Maintenance WHERE RDTag_No = ?', [req.params.RDTag_No]); res.send('<script>alert("Deleted Successfully"); window.location.href = "/maintenance";</script>'); } catch (e) { next(e); } });
@@ -39,7 +42,7 @@ router.post('/update_maint/:RDTag_No', allowRoles('manager', 'admin'), async (re
          await db.query(`UPDATE Maintenance SET ${fields.map(field => `${field} = ?`).join(',')} WHERE RDTag_No = ?`, [...valuesFrom(req.body), req.params.RDTag_No]);
     const RDTag_No = req.params.RDTag_No;
 await db.query('update Assets set Status = ? where RDTag_No = ?',['Active',RDTag_No]);
-await db.query(`delete from Maintenance where Status = 'Active'`);
+
 
 
 res.redirect('/maintenance'); } catch (e) { next(e); } });

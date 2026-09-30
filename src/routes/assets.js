@@ -19,7 +19,10 @@ router.get('/avlist', async (req, res, next) => { try { const [result] = await d
 router.get('/add', allowRoles('admin', 'manager'), (_req, res) => res.render('Add_Asset'));
 router.post('/assets', allowRoles('manager', 'admin'), async (req, res, next) => { try { await db.query(`INSERT INTO Assets (${assetFields.join(',')}) VALUES (${assetFields.map(() => '?').join(',')})`, valuesFrom(req.body)); res.send('<script>alert("Asset Added Successfully"); window.location.href = "/assets";</script>'); } catch (e) { next(e); } });
 router.get('/update/:RDTag_No', allowRoles('manager', 'admin'), async (req, res, next) => { try { const [result] = await db.query('SELECT * FROM Assets WHERE RDTag_No = ?', [req.params.RDTag_No]); if (!result.length) return res.status(404).send('<h2>Asset not found</h2><a href="/assets">Back to Assets</a>'); res.render('Update', { Assets: result[0] }); } catch (e) { next(e); } });
-router.post('/update/:RDTag_No', allowRoles('manager', 'admin'), async (req, res, next) => { try { await db.query(`UPDATE Assets SET ${assetFields.map(field => `${field} = ?`).join(',')} WHERE RDTag_No = ?`, [...valuesFrom(req.body), req.params.RDTag_No]); res.redirect('/assets'); } catch (e) { next(e); } });
+router.post('/update/:RDTag_No', allowRoles('manager', 'admin'), async (req, res, next) => { try { await db.query(`UPDATE Assets SET ${assetFields.map(field => `${field} = ?`).join(',')} WHERE RDTag_No = ?`, [...valuesFrom(req.body), req.params.RDTag_No]);
+await db.query(`delete from  Assigned where Status = 'Assigned'`);
+
+res.redirect('/assets'); } catch (e) { next(e); } });
 router.get('/delete/:RDTag_No', allowRoles('admin'), async (req, res, next) => {
      try { await db.query('DELETE FROM Assets WHERE RDTag_No = ?', [req.params.RDTag_No]);
     await db.query('delete from Assigned where RDTag_No = ?',[req.params.RDTag_No]);
