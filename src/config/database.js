@@ -31,7 +31,7 @@ Asset_Model varchar(50) not null,Assigned_Date date  not null,Status varchar(200
 
 await db.query(`
 create table if not exists Maintenance(Ticket_No varchar(20) unique not null, RDTag_No varchar(50) unique not null,Asset_Name varchar(200) not null, Asset_Category varchar(200) not null, Asset_Model varchar(200) not null,Asset_Serial_No varchar(200)
-not null,Problem varchar(200) not null, Action varchar(200) default = '##',Date date not null,Status varchar(50)not null)`);
+not null,Problem varchar(200) not null, Action varchar(200) default '##',Date date not null,Status varchar(50)not null)`);
 
 await db.query(`create table if not exists Scrap(RDTag_No varchar(20)not null,Asset_Name varchar(200)not null,Category varchar(200)not null,Model varchar(200) not null,
 Serial_No varchar(200) not null, Host varchar(200) not null,WIFI_MAC varchar(200) not null,
